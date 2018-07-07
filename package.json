@@ -1,0 +1,20 @@
+{
+  "name": "react-node-boilerplate",
+  "version": "1.0.0",
+  "description": "Boiler plate for a react a node express REST api to deplot on heroku",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "start": "node server/server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.0"
+  }
+}
