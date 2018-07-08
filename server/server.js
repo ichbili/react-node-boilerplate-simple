@@ -6,9 +6,9 @@ console.log('Server started');
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.get('*', function(req, res) {
-    res.send({ something : 'Hello my Friend'});
-  });
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + 'client/build/index.html'));
+});
 
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
@@ -16,11 +16,11 @@ app.get('/api/hello', (req, res) => {
 
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
-    app.use(express.static(path.join(__dirname, 'client/build/static')));
-    // Handle React routing, return all requests to React app
-    app.get('*', function(req, res) {
-      res.sendFile(path.join(__dirname, 'client/build/static/index.html'));
-    });
+    // app.use(express.static(path.join(__dirname, 'client/build')));
+    // // Handle React routing, return all requests to React app
+    // app.get('*', function(req, res) {
+    //   res.sendFile(path.join(__dirname, 'client/build/index.html'));
+    // });
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
